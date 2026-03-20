@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI System Design Evaluator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <h1>🧠 AI System Design Evaluator</h1>
+
+    <label>Select Question:</label>
+    <select id="question">
+        <option value="url_shortener">URL Shortener</option>
+        <option value="chat_app">Chat Application</option>
+    </select>
+
+    <br><br>
+
+    <textarea id="answer" placeholder="Write your system design answer here..."></textarea>
+
+    <br><br>
+
+    <button onclick="evaluateAnswer()">Evaluate</button>
+
+    <h2 id="result"></h2>
+    <h3 id="missing"></h3>
+
+    <script>
+        async function evaluateAnswer() {
+            const answer = document.getElementById("answer").value;
+            const question = document.getElementById("question").value;
+
+            const response = await fetch("/evaluate", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    answer: answer,
+                    question_id: question
+                })
+            });
+
+            const data = await response.json();
+
+            document.getElementById("result").innerText =
+                "Score: " + data.score + " / 10";
+
+            document.getElementById("missing").innerText =
+                "Missing: " + data.missing.join(", ");
+        }
+    </script>
+
+</body>
+</html>

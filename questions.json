@@ -1,0 +1,24 @@
+{
+  "url_shortener": {
+    "question": "Design a URL shortener like bit.ly",
+    "ideal_points": [
+      "hashing",
+      "database",
+      "scalability",
+      "load balancing",
+      "caching",
+      "fault tolerance"
+    ]
+  },
+  "chat_app": {
+    "question": "Design a chat application like WhatsApp",
+    "ideal_points": [
+      "real-time messaging",
+      "websockets",
+      "database",
+      "scalability",
+      "message queue",
+      "offline storage"
+    ]
+  }
+}
